@@ -54,9 +54,19 @@ const portfolioData = [
     image: erpClover,
   },
   {
-    title: "Fintech Platform",
-    description: "Modern SaaS platform for financial services.",
-    url: "https://www.truefi.ai/",
+    title: "Outreach Automation",
+    description: "B2B SaaS platform for lead generation and multichannel outreach.",
+    url: "https://www.lemlist.com/",
+  },
+  {
+    title: "Data Analytics",
+    description: "SaaS platform for data visualization and metrics-driven decisions.",
+    url: "https://www.getcrosstab.com/",
+  },
+  {
+    title: "AI Workflow",
+    description: "AI-powered automation platform for productivity and operations.",
+    url: "https://letti.ai/",
   },
   {
     title: "Real Estate AI",
@@ -67,11 +77,6 @@ const portfolioData = [
     title: "AI Transcription",
     description: "Meeting transcription platform with AI-powered insights.",
     url: "https://fireflies.ai/",
-  },
-  {
-    title: "Industrial AI",
-    description: "Computer vision platform for quality inspection.",
-    url: "https://inspecti.ai/",
   },
   {
     title: "Property Analytics",
@@ -89,11 +94,6 @@ const portfolioData = [
     title: "AI Search",
     description: "Intelligent search platform with subscription model.",
     url: "https://searchplus.ai/",
-  },
-  {
-    title: "Invoice Automation",
-    description: "Streamlined invoicing system with payment integration.",
-    url: "https://noneedinvoice.com/",
   },
   {
     title: "Virtual Spaces",
