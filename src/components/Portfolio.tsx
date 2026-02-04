@@ -1,110 +1,171 @@
-import PortfolioSection from "./PortfolioSection";
+import PortfolioCard from "./PortfolioCard";
+
+// Import all portfolio images
+import yasufukuClinic from "@/assets/portfolio/yasufuku-clinic.jpg";
+import mobileRental from "@/assets/portfolio/mobile-rental.jpg";
+import aisinRecruitment from "@/assets/portfolio/aisin-recruitment.jpg";
+import portFitness from "@/assets/portfolio/port-fitness.jpg";
+import seawoodHotel from "@/assets/portfolio/seawood-hotel.jpg";
+import beachClub from "@/assets/portfolio/beach-club.jpg";
+import erpMercadopago from "@/assets/portfolio/erp-mercadopago.jpg";
+import erpClover from "@/assets/portfolio/erp-clover.jpg";
+import truefi from "@/assets/portfolio/truefi.jpg";
+import flatty from "@/assets/portfolio/flatty.jpg";
+import fireflies from "@/assets/portfolio/fireflies.jpg";
+import inspecti from "@/assets/portfolio/inspecti.jpg";
+import appfolio from "@/assets/portfolio/appfolio.jpg";
+import fullstory from "@/assets/portfolio/fullstory.jpg";
+import searchplus from "@/assets/portfolio/searchplus.jpg";
+import noneedinvoice from "@/assets/portfolio/noneedinvoice.jpg";
+import yroom from "@/assets/portfolio/yroom.jpg";
+import maygel from "@/assets/portfolio/maygel.jpg";
+import fitch from "@/assets/portfolio/fitch.jpg";
+import au from "@/assets/portfolio/au.jpg";
 
 const portfolioData = [
   {
-    title: "WordPress (Corporate & Regulated)",
-    description: "Trust-focused WordPress websites for regulated and operational businesses, including healthcare and service providers.",
-    items: [
-      { type: "link" as const, title: "yasufuku-clinic.com", url: "https://yasufuku-clinic.com/" },
-      { type: "link" as const, title: "mobile-rental.jp", url: "https://mobile-rental.jp/" },
-    ],
+    title: "Corporate Healthcare",
+    description: "Trust-focused websites for healthcare and regulated businesses.",
+    image: yasufukuClinic,
+    url: "https://yasufuku-clinic.com/",
   },
   {
-    title: "WordPress Landing Pages (Conversion)",
-    description: "High-conversion landing pages designed for recruitment, fitness, and marketing funnels, optimized for mobile and clarity.",
-    items: [
-      { type: "link" as const, title: "aisin-kikan-saiyo.com/lp", url: "https://aisin-kikan-saiyo.com/lp/" },
-      { type: "link" as const, title: "port-fitness.jp", url: "https://port-fitness.jp/" },
-    ],
+    title: "Device Rental Platform",
+    description: "Professional service website with booking and rental management.",
+    image: mobileRental,
+    url: "https://mobile-rental.jp/",
   },
   {
-    title: "WordPress + Commerce / Reservation",
-    description: "Booking and commerce systems built on WordPress, handling real reservation flows, payments, and multilingual UX.",
-    items: [
-      { type: "link" as const, title: "seawoodhotel.com", url: "https://www.seawoodhotel.com/" },
-      { type: "link" as const, title: "beachclub.hotel-sandalwood.com", url: "https://beachclub.hotel-sandalwood.com/" },
-    ],
+    title: "Recruitment Landing",
+    description: "High-conversion landing page for industrial recruitment.",
+    image: aisinRecruitment,
+    url: "https://aisin-kikan-saiyo.com/lp/",
   },
   {
-    title: "ERP / Odoo Integrations",
-    description: "Custom Odoo ERP and POS integrations focused on payments, accounting correctness, and hardware integration in live environments.",
-    items: [
-      { type: "case-study" as const, title: "MercadoPago QR Payment Integration for Odoo Portal & POS" },
-      { type: "case-study" as const, title: "Clover Flex 4 Terminal Integration for Odoo POS" },
-    ],
+    title: "Fitness Brand",
+    description: "Dynamic membership platform with strong visual identity.",
+    image: portFitness,
+    url: "https://port-fitness.jp/",
   },
   {
-    title: "SaaS Web Applications (React / Next.js)",
-    description: "Modern SaaS applications with authentication, scalable UI systems, and production-ready architecture.",
-    items: [
-      { type: "link" as const, title: "truefi.ai", url: "https://www.truefi.ai/" },
-      { type: "link" as const, title: "flatty.ai", url: "https://flatty.ai/" },
-    ],
+    title: "Hotel Booking",
+    description: "Luxury hotel website with integrated reservation system.",
+    image: seawoodHotel,
+    url: "https://www.seawoodhotel.com/",
   },
   {
-    title: "AI-Powered SaaS Platforms",
-    description: "AI-first products where machine learning and LLMs are embedded into real workflows, dashboards, and decision-support systems.",
-    items: [
-      { type: "link" as const, title: "fireflies.ai", url: "https://fireflies.ai/" },
-      { type: "link" as const, title: "inspecti.ai", url: "https://inspecti.ai/" },
-    ],
+    title: "Resort Platform",
+    description: "Beach club booking system with multilingual support.",
+    image: beachClub,
+    url: "https://beachclub.hotel-sandalwood.com/",
   },
   {
-    title: "Dashboards & Data-Heavy Applications",
-    description: "Analytics and management dashboards designed for long-session use, complex data visualization, and decision-making.",
-    items: [
-      { type: "link" as const, title: "appfolio.com", url: "https://www.appfolio.com/im/lp/sem/software" },
-      { type: "link" as const, title: "fullstory.com", url: "https://www.fullstory.com/ps/data-analytics-portfolio" },
-    ],
-    note: "Shown as comparable systems demonstrating UX and data complexity standards.",
+    title: "QR Payment Integration",
+    description: "MercadoPago QR payment system for ERP and POS environments.",
+    image: erpMercadopago,
   },
   {
-    title: "Payments, Subscriptions & Monetization",
-    description: "Payment-driven platforms including subscriptions, invoicing, and monetization systems using Stripe and QR-based payments.",
-    items: [
-      { type: "link" as const, title: "searchplus.ai", url: "https://searchplus.ai/" },
-      { type: "link" as const, title: "noneedinvoice.com", url: "https://noneedinvoice.com/" },
-    ],
+    title: "Terminal Integration",
+    description: "Clover Flex terminal integration for point of sale systems.",
+    image: erpClover,
   },
   {
-    title: "Brand & Motion-Aware UX",
-    description: "Brand-driven websites using subtle animation and refined interaction to support storytelling without harming usability.",
-    items: [
-      { type: "link" as const, title: "yroom.jp", url: "https://yroom.jp/" },
-      { type: "link" as const, title: "maygelcoronel.com", url: "https://maygelcoronel.com/" },
-    ],
+    title: "Fintech Platform",
+    description: "Modern SaaS platform for financial services.",
+    image: truefi,
+    url: "https://www.truefi.ai/",
   },
   {
-    title: "Enterprise-Grade Reference Platforms",
-    description: "Enterprise-scale platforms used as UX and architectural benchmarks for information-heavy, trust-critical systems.",
-    items: [
-      { type: "link" as const, title: "fitchratings.com", url: "https://www.fitchratings.com/" },
-      { type: "link" as const, title: "au.com", url: "https://www.au.com/" },
-    ],
-    note: "These platforms are included as quality and UX benchmarks, not as authored projects.",
+    title: "Real Estate AI",
+    description: "AI-powered real estate platform with intelligent search.",
+    image: flatty,
+    url: "https://flatty.ai/",
+  },
+  {
+    title: "AI Transcription",
+    description: "Meeting transcription platform with AI-powered insights.",
+    image: fireflies,
+    url: "https://fireflies.ai/",
+  },
+  {
+    title: "Industrial AI",
+    description: "Computer vision platform for quality inspection.",
+    image: inspecti,
+    url: "https://inspecti.ai/",
+  },
+  {
+    title: "Property Analytics",
+    description: "Complex dashboard for property management and analytics.",
+    image: appfolio,
+    url: "https://www.appfolio.com/im/lp/sem/software",
+    note: "Benchmark reference",
+  },
+  {
+    title: "User Analytics",
+    description: "Session analytics platform with behavioral insights.",
+    image: fullstory,
+    url: "https://www.fullstory.com/ps/data-analytics-portfolio",
+    note: "Benchmark reference",
+  },
+  {
+    title: "AI Search",
+    description: "Intelligent search platform with subscription model.",
+    image: searchplus,
+    url: "https://searchplus.ai/",
+  },
+  {
+    title: "Invoice Automation",
+    description: "Streamlined invoicing system with payment integration.",
+    image: noneedinvoice,
+    url: "https://noneedinvoice.com/",
+  },
+  {
+    title: "Virtual Spaces",
+    description: "Immersive virtual room platform with refined interactions.",
+    image: yroom,
+    url: "https://yroom.jp/",
+  },
+  {
+    title: "Fashion Editorial",
+    description: "Luxury fashion website with elegant motion design.",
+    image: maygel,
+    url: "https://maygelcoronel.com/",
+  },
+  {
+    title: "Financial Ratings",
+    description: "Enterprise platform for credit ratings and market data.",
+    image: fitch,
+    url: "https://www.fitchratings.com/",
+    note: "Benchmark reference",
+  },
+  {
+    title: "Telecom Portal",
+    description: "Large-scale consumer service platform.",
+    image: au,
+    url: "https://www.au.com/",
+    note: "Benchmark reference",
   },
 ];
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="py-24">
+    <section id="work" className="py-32 border-t border-border">
       <div className="section-container">
-        <h2 className="text-sm font-medium tracking-wide uppercase text-muted-foreground mb-4">
-          Portfolio
+        <p className="section-label">Selected Work</p>
+        
+        <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-16 max-w-xl">
+          Production systems across industries
         </h2>
         
-        <p className="text-2xl md:text-3xl font-medium text-foreground mb-12 max-w-2xl">
-          Selected work across SaaS, AI, ERP, and enterprise systems.
-        </p>
-        
-        <div className="grid gap-6 md:grid-cols-2">
-          {portfolioData.map((section, index) => (
-            <PortfolioSection
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {portfolioData.map((project, index) => (
+            <PortfolioCard
               key={index}
-              title={section.title}
-              description={section.description}
-              items={section.items}
-              note={section.note}
+              title={project.title}
+              description={project.description}
+              image={project.image}
+              url={project.url}
+              note={project.note}
             />
           ))}
         </div>
