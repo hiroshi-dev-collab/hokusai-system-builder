@@ -7,10 +7,9 @@ import PortfolioCard from "./PortfolioCard";
 import erpMercadopago from "@/assets/portfolio/erp-mercadopago.jpg";
 import erpClover from "@/assets/portfolio/erp-clover.jpg";
 
-// For projects with real URLs, use screenshot API
+// For projects with real URLs, use screenshot API - full page view
 const getScreenshotUrl = (url: string) => {
-  // Using a free screenshot service for real website previews
-  return `https://image.thum.io/get/width/800/crop/500/noanimate/${url}`;
+  return `https://image.thum.io/get/width/1200/viewportWidth/1200/png/${url}`;
 };
 
 const portfolioData = [
@@ -120,13 +119,34 @@ const portfolioData = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
 const Portfolio = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="work" className="py-32 border-t border-border" ref={ref}>
-      <div className="section-container">
+    <section id="work" className="py-32 border-t border-border relative overflow-hidden" ref={ref}>
+      {/* Background accent */}
+      <motion.div 
+        className="absolute top-1/4 -right-64 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      
+      <div className="section-container relative">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -140,16 +160,30 @@ const Portfolio = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl md:text-4xl font-medium text-foreground mb-16 max-w-xl"
+          className="text-3xl md:text-5xl font-medium text-foreground mb-6 max-w-2xl"
         >
           Production systems across industries
         </motion.h2>
         
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-muted-foreground text-lg mb-16 max-w-xl"
+        >
+          From healthcare to fintech, building reliable systems that scale.
+        </motion.p>
+        
+        <motion.div 
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {portfolioData.map((project, index) => (
             <PortfolioCard
               key={index}
-              index={index % 6}
+              index={index % 9}
               title={project.title}
               description={project.description}
               image={project.image || getScreenshotUrl(project.url!)}
@@ -157,7 +191,7 @@ const Portfolio = () => {
               note={project.note}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

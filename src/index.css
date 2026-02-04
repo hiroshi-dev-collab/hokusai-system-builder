@@ -95,20 +95,17 @@
   }
 
   .portfolio-card {
-    @apply bg-card rounded-lg overflow-hidden border border-border transition-all duration-500;
+    @apply bg-card rounded-xl overflow-hidden border border-border transition-all duration-500;
+    box-shadow: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
   }
 
   .portfolio-card:hover {
-    @apply border-border/60;
-    box-shadow: var(--card-glow);
-  }
-
-  .portfolio-card:hover .portfolio-image {
-    @apply scale-105;
+    @apply border-accent/30;
+    box-shadow: 0 20px 40px -12px hsl(0 0% 0% / 0.5), var(--card-glow);
   }
 
   .portfolio-image {
-    @apply w-full aspect-[16/10] object-cover transition-transform duration-700 ease-out;
+    @apply w-full transition-all duration-700 ease-out;
   }
 
   .portfolio-link {
