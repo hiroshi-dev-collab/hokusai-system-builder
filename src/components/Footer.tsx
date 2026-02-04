@@ -7,11 +7,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <p className="text-foreground font-medium">Hiroshi</p>
-            <p className="text-sm text-muted-foreground">Product Engineer · Japan</p>
+            <p className="text-sm text-muted-foreground">Software Developer · Japan</p>
           </div>
           
           <p className="text-sm text-muted-foreground">
-            © {currentYear} All rights reserved.
+            © {currentYear}
           </p>
         </div>
       </div>

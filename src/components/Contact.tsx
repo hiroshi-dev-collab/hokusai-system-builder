@@ -1,32 +1,27 @@
 import { Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-32 border-t border-border">
       <div className="section-container">
-        <h2 className="text-sm font-medium tracking-wide uppercase text-muted-foreground mb-4">
-          Contact
-        </h2>
+        <p className="section-label">Contact</p>
         
-        <div className="max-w-2xl">
-          <p className="text-2xl md:text-3xl font-medium text-foreground mb-6">
-            Let's work together.
+        <div className="max-w-xl">
+          <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-6">
+            Let's work together
+          </h2>
+          
+          <p className="text-muted-foreground leading-relaxed mb-10">
+            Open to collaboration on SaaS platforms, AI-powered products, ERP integrations, and data-driven dashboards.
           </p>
           
-          <p className="text-muted-foreground leading-relaxed mb-8">
-            Open to collaboration on SaaS platforms, AI-powered products, ERP/Odoo integrations, and data-driven dashboards. If you're building something that requires production-grade engineering and system-level thinking, let's connect.
-          </p>
-          
-          <Button 
-            asChild
-            className="px-6 py-3 h-auto text-base"
+          <a 
+            href="mailto:hello@hiroshi.dev"
+            className="btn-primary"
           >
-            <a href="mailto:hello@hiroshi.dev">
-              <Mail className="mr-2 h-4 w-4" />
-              Get in Touch
-            </a>
-          </Button>
+            <Mail className="mr-2 h-4 w-4" />
+            Get in Touch
+          </a>
         </div>
       </div>
     </section>
