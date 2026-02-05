@@ -1,5 +1,5 @@
- import { useState, useEffect } from "react";
- import { motion, AnimatePresence } from "framer-motion";
+ import { useState, useEffect, useCallback } from "react";
+ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
  import { Menu, X } from "lucide-react";
  
  const navItems = [
@@ -36,24 +36,28 @@
      return () => window.removeEventListener("scroll", handleScroll);
    }, []);
  
-   const scrollToSection = (id: string) => {
+   const { scrollYProgress } = useScroll();
+   const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [0.95, 1]);
+ 
+   const scrollToSection = useCallback((id: string) => {
      const element = document.getElementById(id);
      if (element) {
        element.scrollIntoView({ behavior: "smooth" });
      }
      setIsMobileMenuOpen(false);
-   };
+   }, []);
  
-   const scrollToTop = () => {
+   const scrollToTop = useCallback(() => {
      window.scrollTo({ top: 0, behavior: "smooth" });
      setIsMobileMenuOpen(false);
-   };
+   }, []);
  
    return (
      <motion.header
-       initial={{ y: -100 }}
-       animate={{ y: 0 }}
-       transition={{ duration: 0.6, ease: "easeOut" }}
+       initial={{ y: -100, opacity: 0 }}
+       animate={{ y: 0, opacity: 1 }}
+       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+       style={{ opacity: headerOpacity }}
        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
          isScrolled
            ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-lg"
@@ -80,9 +84,14 @@
                <motion.button
                  key={item.id}
                  onClick={() => scrollToSection(item.id)}
-                 initial={{ opacity: 0, y: -20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.4, delay: index * 0.1 }}
+                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                 animate={{ opacity: 1, y: 0, scale: 1 }}
+                 transition={{ 
+                   duration: 0.5, 
+                   delay: 0.3 + index * 0.1,
+                   ease: [0.25, 0.1, 0.25, 1]
+                 }}
+                 whileHover={{ y: -2 }}
                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
                    activeSection === item.id
                      ? "text-accent"
@@ -92,9 +101,11 @@
                  {item.label}
                  {activeSection === item.id && (
                    <motion.div
-                     layoutId="activeSection"
-                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full"
-                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                   layoutId="activeSection"
+                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-accent via-accent to-accent/50 rounded-full"
+                   initial={{ scaleX: 0 }}
+                   animate={{ scaleX: 1 }}
+                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                    />
                  )}
                </motion.button>
