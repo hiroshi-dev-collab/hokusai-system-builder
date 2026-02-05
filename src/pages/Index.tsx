@@ -1,4 +1,5 @@
  import { motion, AnimatePresence } from "framer-motion";
+ import CustomCursor from "@/components/CustomCursor";
  import Header from "@/components/Header";
  import Hero from "@/components/Hero";
  import About from "@/components/About";
@@ -39,12 +40,14 @@ const Index = () => {
      <AnimatePresence mode="wait">
        <motion.main 
          className="min-h-screen bg-background pt-16 md:pt-20"
+        style={{ cursor: 'none' }}
          variants={pageTransition}
          initial="initial"
          animate="animate"
          exit="exit"
        >
          <Header />
+         <CustomCursor />
          <motion.div variants={sectionTransition}>
            <Hero />
          </motion.div>
