@@ -1,8 +1,23 @@
-import { ArrowDown, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+ import { ArrowDown, Mail } from "lucide-react";
+ import { motion, useScroll, useTransform } from "framer-motion";
+ import { useRef } from "react";
 import hiroshiPhoto from "@/assets/hiroshi-photo.jpg";
 
 const Hero = () => {
+   const ref = useRef(null);
+   const { scrollYProgress } = useScroll({
+     target: ref,
+     offset: ["start start", "end start"]
+   });
+ 
+   // Parallax transforms for different layers
+   const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+   const y2 = useTransform(scrollYProgress, [0, 1], [0, -250]);
+   const y3 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+   const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
+   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+ 
   const scrollToWork = () => {
     document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -30,43 +45,81 @@ const Hero = () => {
     }
   };
 
-  return (
-    <section className="min-h-screen flex flex-col justify-center section-container py-24 relative overflow-hidden">
-      {/* Animated background elements */}
-      <motion.div 
-        className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
-        animate={glowPulse}
-      />
-      <motion.div 
-        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      />
-      
-      {/* Floating particles */}
-      {[...Array(5)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-accent/40 rounded-full"
-          style={{
-            top: `${20 + i * 15}%`,
-            left: `${10 + i * 20}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: 3 + i,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.5
-          }}
-        />
-      ))}
+   return (
+     <section ref={ref} className="min-h-screen flex flex-col justify-center section-container py-24 relative overflow-hidden">
+       {/* Parallax background elements */}
+       <motion.div 
+         className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
+         style={{ y: y2, scale }}
+         animate={glowPulse}
+       />
+       <motion.div 
+         className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+         style={{ y: y1, rotate }}
+         animate={{
+           scale: [1, 1.2, 1],
+           opacity: [0.2, 0.4, 0.2],
+         }}
+         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" as const, delay: 1 }}
+       />
+       
+       {/* Large parallax gradient orb */}
+       <motion.div 
+         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-accent/5 via-transparent to-transparent rounded-full pointer-events-none"
+         style={{ y: y3, scale, opacity }}
+       />
+       
+       {/* Floating particles with parallax */}
+       {[...Array(8)].map((_, i) => {
+         const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -50 - i * 30]);
+         return (
+           <motion.div
+             key={i}
+             className="absolute w-1.5 h-1.5 bg-accent/30 rounded-full"
+             style={{
+               top: `${15 + i * 10}%`,
+               left: `${5 + i * 12}%`,
+               y: parallaxY,
+             }}
+             animate={{
+               y: [0, -20, 0],
+               opacity: [0.2, 0.6, 0.2],
+               scale: [1, 1.2, 1],
+             }}
+             transition={{
+               duration: 4 + i * 0.5,
+               repeat: Infinity,
+               ease: "easeInOut" as const,
+               delay: i * 0.3
+             }}
+           />
+         );
+       })}
+       
+       {/* Right side floating particles */}
+       {[...Array(5)].map((_, i) => {
+         const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -80 - i * 20]);
+         return (
+           <motion.div
+             key={`right-${i}`}
+             className="absolute w-1 h-1 bg-accent/20 rounded-full"
+             style={{
+               top: `${25 + i * 15}%`,
+               right: `${8 + i * 10}%`,
+               y: parallaxY,
+             }}
+             animate={{
+               opacity: [0.1, 0.5, 0.1],
+             }}
+             transition={{
+               duration: 3 + i,
+               repeat: Infinity,
+               ease: "easeInOut" as const,
+               delay: i * 0.4
+             }}
+           />
+         );
+       })}
 
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
         <div className="order-2 lg:order-1">
@@ -146,12 +199,13 @@ const Hero = () => {
           </motion.div>
         </div>
         
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          className="order-1 lg:order-2 flex justify-center lg:justify-end"
-        >
+         <motion.div 
+           initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+           animate={{ opacity: 1, scale: 1, rotate: 0 }}
+           transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
+           className="order-1 lg:order-2 flex justify-center lg:justify-end"
+           style={{ y: y3 }}
+         >
           <motion.div 
             className="relative"
             animate={floatingAnimation}
