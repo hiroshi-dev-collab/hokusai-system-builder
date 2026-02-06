@@ -1,17 +1,24 @@
- import { useState, useEffect, useCallback } from "react";
- import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
- import { Menu, X } from "lucide-react";
- 
- const navItems = [
-   { id: "about", label: "About" },
-   { id: "work", label: "Work" },
-   { id: "contact", label: "Contact" },
- ];
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
+
+const navItems = [
+  { id: "about", label: "About" },
+  { id: "work", label: "Work" },
+  { id: "contact", label: "Contact" },
+];
  
  const Header = () => {
-   const [activeSection, setActiveSection] = useState<string>("");
-   const [isScrolled, setIsScrolled] = useState(false);
-   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
  
    useEffect(() => {
      const handleScroll = () => {
@@ -78,39 +85,65 @@
              </span>
            </motion.button>
  
-           {/* Desktop Navigation */}
-           <div className="hidden md:flex items-center gap-1">
-             {navItems.map((item, index) => (
-               <motion.button
-                 key={item.id}
-                 onClick={() => scrollToSection(item.id)}
-                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                 transition={{ 
-                   duration: 0.5, 
-                   delay: 0.3 + index * 0.1,
-                   ease: [0.25, 0.1, 0.25, 1]
-                 }}
-                 whileHover={{ y: -2 }}
-                 className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                   activeSection === item.id
-                     ? "text-accent"
-                     : "text-muted-foreground hover:text-foreground"
-                 }`}
-               >
-                 {item.label}
-                 {activeSection === item.id && (
-                   <motion.div
-                   layoutId="activeSection"
-                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-accent via-accent to-accent/50 rounded-full"
-                   initial={{ scaleX: 0 }}
-                   animate={{ scaleX: 1 }}
-                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                   />
-                 )}
-               </motion.button>
-             ))}
-           </div>
+          {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: 0.3 + index * 0.1,
+                    ease: [0.25, 0.1, 0.25, 1] as const
+                  }}
+                  whileHover={{ y: -2 }}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
+                    activeSection === item.id
+                      ? "text-accent"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-accent via-accent to-accent/50 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
+              ))}
+
+              {/* Theme Toggle */}
+              <motion.button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                whileHover={{ scale: 1.1, rotate: 15 }}
+                whileTap={{ scale: 0.9 }}
+                className="ml-2 p-2 rounded-full bg-secondary/50 hover:bg-secondary text-foreground transition-colors"
+                aria-label="Toggle theme"
+              >
+                {mounted && (
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={theme}
+                      initial={{ y: -20, opacity: 0, rotate: -90 }}
+                      animate={{ y: 0, opacity: 1, rotate: 0 }}
+                      exit={{ y: 20, opacity: 0, rotate: 90 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                    </motion.div>
+                  </AnimatePresence>
+                )}
+              </motion.button>
+            </div>
  
            {/* Mobile Menu Button */}
            <motion.button
@@ -148,11 +181,23 @@
                    }`}
                  >
                    {item.label}
-                 </motion.button>
-               ))}
-             </div>
-           </motion.div>
-         )}
+                  </motion.button>
+                ))}
+
+                {/* Mobile Theme Toggle */}
+                <motion.button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  className="flex items-center gap-3 px-4 py-3 text-left text-base font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                >
+                  {mounted && (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />)}
+                  <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
        </AnimatePresence>
      </motion.header>
    );
