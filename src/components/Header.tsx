@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import LanguageSelector from "./LanguageSelector";
 import { useTheme } from "next-themes";
 
 const navItems = [
@@ -118,6 +119,15 @@ const navItems = [
                 </motion.button>
               ))}
 
+              {/* Language Selector */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.55 }}
+              >
+                <LanguageSelector />
+              </motion.div>
+
               {/* Theme Toggle */}
               <motion.button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -126,7 +136,7 @@ const navItems = [
                 transition={{ duration: 0.5, delay: 0.6 }}
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
-                className="ml-2 p-2 rounded-full bg-secondary/50 hover:bg-secondary text-foreground transition-colors"
+                className="p-2 rounded-full bg-secondary/50 hover:bg-secondary text-foreground transition-colors"
                 aria-label="Toggle theme"
               >
                 {mounted && (
@@ -193,9 +203,12 @@ const navItems = [
                   className="flex items-center gap-3 px-4 py-3 text-left text-base font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
                 >
                   {mounted && (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />)}
-                  <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
-                </motion.button>
-              </div>
+                 <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                 </motion.button>
+
+                 {/* Mobile Language Selector */}
+                 <LanguageSelector variant="mobile" />
+               </div>
             </motion.div>
           )}
        </AnimatePresence>
