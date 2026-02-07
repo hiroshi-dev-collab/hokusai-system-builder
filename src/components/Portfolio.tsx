@@ -6,6 +6,8 @@ import PortfolioCard from "./PortfolioCard";
 // Import local images for projects without URLs
 import erpMercadopago from "@/assets/portfolio/erp-mercadopago.jpg";
 import erpClover from "@/assets/portfolio/erp-clover.jpg";
+import beachClub from "@/assets/portfolio/beach-club.jpg";
+import flatty from "@/assets/portfolio/flatty.jpg";
 
 // For projects with real URLs, use screenshot API - full page view
 const getScreenshotUrl = (url: string) => {
@@ -41,6 +43,7 @@ const portfolioData = [
   {
     title: "Resort Platform",
     description: "Beach club booking system with multilingual support.",
+    image: beachClub,
     url: "https://beachclub.hotel-sandalwood.com/",
   },
   {
@@ -71,6 +74,7 @@ const portfolioData = [
   {
     title: "Real Estate AI",
     description: "AI-powered real estate platform with intelligent search.",
+    image: flatty,
     url: "https://flatty.ai/",
   },
   {
