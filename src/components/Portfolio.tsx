@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useInView } from "framer-motion";
 import PortfolioCard from "./PortfolioCard";
 import { useLanguage } from "@/contexts/LanguageContext";
+import portfolioTranslations from "@/i18n/portfolioTranslations";
 
 // Import local images for projects without URLs
 import erpMercadopago from "@/assets/portfolio/erp-mercadopago.jpg";
@@ -15,113 +16,27 @@ const getScreenshotUrl = (url: string) => {
   return `https://image.thum.io/get/width/1200/viewportWidth/1200/png/${url}`;
 };
 
-const portfolioData = [
-  {
-    title: "Corporate Healthcare",
-    description: "Trust-focused websites for healthcare and regulated businesses.",
-    url: "https://yasufuku-clinic.com/",
-  },
-  {
-    title: "Device Rental Platform",
-    description: "Professional service website with booking and rental management.",
-    url: "https://mobile-rental.jp/",
-  },
-  {
-    title: "Recruitment Landing",
-    description: "High-conversion landing page for industrial recruitment.",
-    url: "https://aisin-kikan-saiyo.com/lp/",
-  },
-  {
-    title: "Fitness Brand",
-    description: "Dynamic membership platform with strong visual identity.",
-    url: "https://port-fitness.jp/",
-  },
-  {
-    title: "Hotel Booking",
-    description: "Luxury hotel website with integrated reservation system.",
-    url: "https://www.seawoodhotel.com/",
-  },
-  {
-    title: "Resort Platform",
-    description: "Beach club booking system with multilingual support.",
-    image: beachClub,
-    url: "https://beachclub.hotel-sandalwood.com/",
-  },
-  {
-    title: "QR Payment Integration",
-    description: "MercadoPago QR payment system for ERP and POS environments.",
-    image: erpMercadopago,
-  },
-  {
-    title: "Terminal Integration",
-    description: "Clover Flex terminal integration for point of sale systems.",
-    image: erpClover,
-  },
-  {
-    title: "Outreach Automation",
-    description: "B2B SaaS platform for lead generation and multichannel outreach.",
-    url: "https://www.lemlist.com/",
-  },
-  {
-    title: "Data Analytics",
-    description: "SaaS platform for data visualization and metrics-driven decisions.",
-    url: "https://www.getcrosstab.com/",
-  },
-  {
-    title: "AI Workflow",
-    description: "AI-powered automation platform for productivity and operations.",
-    url: "https://letti.ai/",
-  },
-  {
-    title: "Real Estate AI",
-    description: "AI-powered real estate platform with intelligent search.",
-    image: flatty,
-    url: "https://flatty.ai/",
-  },
-  {
-    title: "AI Transcription",
-    description: "Meeting transcription platform with AI-powered insights.",
-    url: "https://fireflies.ai/",
-  },
-  {
-    title: "Property Analytics",
-    description: "Complex dashboard for property management and analytics.",
-    url: "https://www.appfolio.com/im/lp/sem/software",
-    note: "Benchmark reference",
-  },
-  {
-    title: "User Analytics",
-    description: "Session analytics platform with behavioral insights.",
-    url: "https://www.fullstory.com/ps/data-analytics-portfolio",
-    note: "Benchmark reference",
-  },
-  {
-    title: "AI Search",
-    description: "Intelligent search platform with subscription model.",
-    url: "https://searchplus.ai/",
-  },
-  {
-    title: "Virtual Spaces",
-    description: "Immersive virtual room platform with refined interactions.",
-    url: "https://yroom.jp/",
-  },
-  {
-    title: "Fashion Editorial",
-    description: "Luxury fashion website with elegant motion design.",
-    url: "https://maygelcoronel.com/",
-  },
-  {
-    title: "Financial Ratings",
-    description: "Enterprise platform for credit ratings and market data.",
-    url: "https://www.fitchratings.com/",
-    note: "Benchmark reference",
-  },
-  {
-    title: "Telecom Portal",
-    description: "Large-scale consumer service platform.",
-    url: "https://www.au.com/",
-    note: "Benchmark reference",
-  },
+const portfolioMeta = [
+  { url: "https://yasufuku-clinic.com/" },
+  { url: "https://mobile-rental.jp/" },
+  { url: "https://aisin-kikan-saiyo.com/lp/" },
+  { url: "https://port-fitness.jp/" },
+  { url: "https://www.seawoodhotel.com/" },
+  { image: beachClub, url: "https://beachclub.hotel-sandalwood.com/" },
+  { image: erpMercadopago },
+  { image: erpClover },
+  { url: "https://www.lemlist.com/" },
+  { url: "https://www.getcrosstab.com/" },
+  { url: "https://letti.ai/" },
+  { image: flatty, url: "https://flatty.ai/" },
+  { url: "https://fireflies.ai/" },
+  { url: "https://www.appfolio.com/im/lp/sem/software", note: "Benchmark reference" },
+  { url: "https://www.fullstory.com/ps/data-analytics-portfolio", note: "Benchmark reference" },
+  { url: "https://searchplus.ai/" },
+  { url: "https://yroom.jp/" },
+  { url: "https://maygelcoronel.com/" },
+  { url: "https://www.fitchratings.com/", note: "Benchmark reference" },
+  { url: "https://www.au.com/", note: "Benchmark reference" },
 ];
 
 const containerVariants = {
@@ -136,7 +51,7 @@ const containerVariants = {
 };
 
 const Portfolio = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -247,17 +162,20 @@ const Portfolio = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {portfolioData.map((project, index) => (
-            <PortfolioCard
-              key={index}
-              index={index % 9}
-              title={project.title}
-              description={project.description}
-              image={project.image || getScreenshotUrl(project.url!)}
-              url={project.url}
-              note={project.note}
-            />
-          ))}
+          {portfolioMeta.map((meta, index) => {
+            const translated = portfolioTranslations[language]?.[index] ?? portfolioTranslations.en[index];
+            return (
+              <PortfolioCard
+                key={index}
+                index={index % 9}
+                title={translated.title}
+                description={translated.description}
+                image={meta.image || getScreenshotUrl(meta.url!)}
+                url={meta.url}
+                note={meta.note}
+              />
+            );
+          })}
         </motion.div>
 
         {/* Bottom decoration */}
