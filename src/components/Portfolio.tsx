@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import PortfolioCard from "./PortfolioCard";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Import local images for projects without URLs
 import erpMercadopago from "@/assets/portfolio/erp-mercadopago.jpg";
@@ -135,6 +136,7 @@ const containerVariants = {
 };
 
 const Portfolio = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -195,7 +197,7 @@ const Portfolio = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="w-2 h-2 bg-accent rounded-full"
             />
-            Selected Work
+            {t.portfolio.label}
           </motion.p>
         </motion.div>
         
@@ -205,7 +207,7 @@ const Portfolio = () => {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-3xl md:text-5xl font-medium text-foreground mb-6 max-w-2xl"
         >
-          <motion.span className="inline-block">Production systems</motion.span>{" "}
+          <motion.span className="inline-block">{t.portfolio.heading1}</motion.span>{" "}
           <motion.span 
             className="inline-block text-accent"
             animate={{ 
@@ -217,7 +219,7 @@ const Portfolio = () => {
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            across industries
+            {t.portfolio.heading2}
           </motion.span>
         </motion.h2>
         
@@ -227,7 +229,7 @@ const Portfolio = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-muted-foreground text-lg mb-16 max-w-xl"
         >
-          From healthcare to fintech, building reliable systems that scale.
+          {t.portfolio.subtitle}
         </motion.p>
 
         {/* Animated line */}

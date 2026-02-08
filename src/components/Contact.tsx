@@ -2,8 +2,10 @@ import { Mail, ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -73,7 +75,7 @@ const Contact = () => {
           variants={itemVariants}
           className="section-label"
         >
-          Contact
+          {t.contact.title}
         </motion.p>
         
         <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -89,7 +91,7 @@ const Contact = () => {
                 className="inline-block"
                 whileHover={{ scale: 1.02 }}
               >
-                Let's build
+                {t.contact.heading1}
               </motion.span>{" "}
               <motion.span 
                 className="inline-block text-accent"
@@ -103,9 +105,9 @@ const Contact = () => {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                something
+                {t.contact.heading2}
               </motion.span>{" "}
-              <motion.span className="inline-block">together</motion.span>
+              <motion.span className="inline-block">{t.contact.heading3}</motion.span>
             </motion.h2>
             <motion.p 
               className="text-muted-foreground leading-relaxed text-lg"
@@ -114,8 +116,7 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Open to collaborating on SaaS platforms, AI-powered products, ERP integrations, 
-              mobile applications, and data-driven dashboards.
+              {t.contact.description}
             </motion.p>
 
             {/* Social links */}
@@ -167,7 +168,7 @@ const Contact = () => {
                   <Mail className="h-5 w-5 text-foreground" />
                 </motion.div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
+                  <p className="text-sm text-muted-foreground">{t.contact.email}</p>
                   <p className="text-foreground font-medium">hello@hiroshi.dev</p>
                 </div>
               </div>
@@ -205,7 +206,7 @@ const Contact = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <span className="text-sm text-muted-foreground">Currently available for new projects</span>
+              <span className="text-sm text-muted-foreground">{t.contact.available}</span>
             </motion.div>
           </motion.div>
         </div>
