@@ -3,14 +3,15 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Menu, X, Sun, Moon } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
 import { useTheme } from "next-themes";
-
-const navItems = [
-  { id: "about", label: "About" },
-  { id: "work", label: "Work" },
-  { id: "contact", label: "Contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
  
  const Header = () => {
+  const { t } = useLanguage();
+  const navItems = [
+    { id: "about", label: t.nav.about },
+    { id: "work", label: t.nav.work },
+    { id: "contact", label: t.nav.contact },
+  ];
   const [activeSection, setActiveSection] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -203,7 +204,7 @@ const navItems = [
                   className="flex items-center gap-3 px-4 py-3 text-left text-base font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
                 >
                   {mounted && (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />)}
-                 <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                 <span>{theme === "dark" ? t.nav.lightMode : t.nav.darkMode}</span>
                  </motion.button>
 
                  {/* Mobile Language Selector */}

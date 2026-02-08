@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUp } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -21,9 +23,9 @@ const Footer = () => {
   };
 
   const links = [
-    { href: "#work", label: "Work" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" }
+    { href: "#work", label: t.nav.work },
+    { href: "#about", label: t.nav.about },
+    { href: "#contact", label: t.nav.contact }
   ];
 
   return (
@@ -55,7 +57,7 @@ const Footer = () => {
             >
               Hiroshi
             </motion.p>
-            <p className="text-sm text-muted-foreground">Software Developer · Japan</p>
+            <p className="text-sm text-muted-foreground">{t.footer.role}</p>
           </motion.div>
           
           <motion.div 
@@ -128,7 +130,7 @@ const Footer = () => {
             animate={{ x: [0, -50, 0] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
-            HIROSHI · SOFTWARE · DEVELOPER
+            {t.footer.decorative}
           </motion.p>
         </motion.div>
       </div>

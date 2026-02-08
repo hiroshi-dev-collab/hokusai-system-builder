@@ -2,8 +2,10 @@
  import { motion, useScroll, useTransform } from "framer-motion";
  import { useRef } from "react";
 import hiroshiPhoto from "@/assets/hiroshi-photo.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+   const { t } = useLanguage();
    const ref = useRef(null);
    const { scrollYProgress } = useScroll({
      target: ref,
@@ -134,7 +136,7 @@ const Hero = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="inline-block w-2 h-2 bg-accent rounded-full mr-3"
             />
-            Software Developer · Japan
+            {t.hero.subtitle}
           </motion.p>
           
           <motion.h1 
@@ -161,7 +163,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 max-w-xl"
           >
-            Building production-grade systems — SaaS platforms, AI-powered applications, dashboards, and enterprise integrations.
+            {t.hero.description}
           </motion.p>
           
           <motion.div 
@@ -177,7 +179,7 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
-              View Work
+              {t.hero.viewWork}
               <motion.span
                 animate={{ y: [0, 3, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -194,7 +196,7 @@ const Hero = () => {
               transition={{ duration: 0.2 }}
             >
               <Mail className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
-              Contact
+              {t.hero.contact}
             </motion.button>
           </motion.div>
         </div>

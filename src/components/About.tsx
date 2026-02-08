@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -35,7 +37,7 @@ const About = () => {
     })
   };
 
-  const titleText = "About";
+  const titleText = t.about.title;
 
   return (
     <section id="about" className="py-32 border-t border-border relative overflow-hidden" ref={ref}>
@@ -81,7 +83,7 @@ const About = () => {
                   backgroundClip: "text",
                 }}
               >
-                Software developer with hands-on experience delivering production systems across SaaS, AI, ERP, and enterprise domains.
+                {t.about.headline}
               </motion.p>
             </motion.div>
             
@@ -95,7 +97,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.3 }}
               >
-                Based in Japan, building and maintaining complex integrations including payment terminals, QR payments, and accounting systems. Developing modern platforms with scalable architecture and AI-powered workflows.
+                {t.about.p1}
               </motion.p>
               
               <motion.p
@@ -104,7 +106,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               >
-                Experienced in both web and mobile development, creating responsive applications that work seamlessly across all devices. Focused on production reliability, clear architecture, and business impact.
+                {t.about.p2}
               </motion.p>
             </motion.div>
           </div>
@@ -124,19 +126,11 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Focus Areas
+            {t.about.focusAreas}
           </motion.p>
           
           <div className="flex flex-wrap gap-3 mt-6">
-            {[
-              "SaaS Platforms",
-              "AI Applications",
-              "Mobile Development",
-              "ERP Integrations",
-              "Payment Systems",
-              "Data Dashboards",
-              "Enterprise Solutions"
-            ].map((area, index) => (
+            {t.about.areas.map((area, index) => (
               <motion.span 
                 key={area} 
                 initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
