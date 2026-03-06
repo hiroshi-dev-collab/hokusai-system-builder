@@ -56,7 +56,7 @@ const Portfolio = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="work" className="py-32 border-t border-border relative overflow-hidden" ref={ref}>
+    <section id="work" className="py-32 relative overflow-hidden section-fade" ref={ref}>
       {/* Animated background elements */}
       <motion.div 
         className="absolute top-1/4 -right-64 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl"

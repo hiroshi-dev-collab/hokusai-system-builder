@@ -1,15 +1,16 @@
  import { motion, AnimatePresence } from "framer-motion";
  import CustomCursor from "@/components/CustomCursor";
+ import AmbientBackground from "@/components/AmbientBackground";
  import Header from "@/components/Header";
  import Hero from "@/components/Hero";
  import About from "@/components/About";
  import Portfolio from "@/components/Portfolio";
  import Contact from "@/components/Contact";
  import Footer from "@/components/Footer";
- 
+
  const pageTransition = {
    initial: { opacity: 0 },
-   animate: { 
+   animate: {
      opacity: 1,
      transition: {
        duration: 0.5,
@@ -17,16 +18,16 @@
        staggerChildren: 0.15,
      }
    },
-   exit: { 
+   exit: {
      opacity: 0,
      transition: { duration: 0.3 }
    }
  };
- 
+
  const sectionTransition = {
    initial: { opacity: 0, y: 40 },
-   animate: { 
-     opacity: 1, 
+   animate: {
+     opacity: 1,
      y: 0,
      transition: {
        duration: 0.8,
@@ -38,29 +39,30 @@
 const Index = () => {
   return (
      <AnimatePresence mode="wait">
-       <motion.main 
-         className="min-h-screen bg-background pt-16 md:pt-20"
+       <motion.main
+         className="min-h-screen bg-background pt-16 md:pt-20 relative"
         style={{ cursor: 'none' }}
          variants={pageTransition}
          initial="initial"
          animate="animate"
          exit="exit"
        >
+         <AmbientBackground />
          <Header />
          <CustomCursor />
-         <motion.div variants={sectionTransition}>
+         <motion.div variants={sectionTransition} className="relative z-10">
            <Hero />
          </motion.div>
-         <motion.div variants={sectionTransition}>
+         <motion.div variants={sectionTransition} className="relative z-10">
            <About />
          </motion.div>
-         <motion.div variants={sectionTransition}>
+         <motion.div variants={sectionTransition} className="relative z-10">
            <Portfolio />
          </motion.div>
-         <motion.div variants={sectionTransition}>
+         <motion.div variants={sectionTransition} className="relative z-10">
            <Contact />
          </motion.div>
-         <motion.div variants={sectionTransition}>
+         <motion.div variants={sectionTransition} className="relative z-10">
            <Footer />
          </motion.div>
        </motion.main>

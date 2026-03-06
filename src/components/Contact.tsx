@@ -35,7 +35,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-32 border-t border-border relative overflow-hidden" ref={ref}>
+    <section id="contact" className="py-32 relative overflow-hidden section-fade" ref={ref}>
       {/* Animated background */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent"
@@ -149,7 +149,7 @@ const Contact = () => {
           >
             <motion.a 
               href="mailto:hiroshi.seniordev@outlook.com" 
-              className="group flex items-center justify-between p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm hover:bg-accent/5 hover:border-accent/30 transition-all duration-500 overflow-hidden relative"
+              className="group flex items-center justify-between p-6 glass-card hover:bg-accent/5 overflow-hidden relative"
               whileHover={{ scale: 1.02, x: 8 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -184,7 +184,7 @@ const Contact = () => {
               href="https://wa.me/18578339756"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm hover:bg-accent/5 hover:border-accent/30 transition-all duration-500 overflow-hidden relative"
+              className="group flex items-center justify-between p-6 glass-card hover:bg-accent/5 overflow-hidden relative"
               whileHover={{ scale: 1.02, x: 8 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -225,7 +225,7 @@ const Contact = () => {
 
             {/* Availability indicator */}
             <motion.div 
-              className="flex items-center gap-3 p-4 rounded-lg bg-accent/5 border border-accent/20"
+              className="flex items-center gap-3 p-4 rounded-xl bg-accent/5 border border-accent/20 backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

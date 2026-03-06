@@ -48,76 +48,95 @@ const Hero = () => {
   };
 
    return (
-     <section ref={ref} className="min-h-screen flex flex-col justify-center section-container py-24 relative overflow-x-clip overflow-y-visible">
-       {/* Parallax background elements */}
-       <motion.div 
-         className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
-         style={{ y: y2, scale }}
-         animate={glowPulse}
+     <section ref={ref} className="min-h-screen flex flex-col justify-center section-container pt-0 pb-24 -mt-16 md:-mt-20 relative overflow-x-clip overflow-y-visible">
+       {/* Enhanced bokeh orbs with parallax - depth layer 1 (far) */}
+       <motion.div
+         className="absolute top-1/4 -left-20 w-80 h-80 rounded-full blur-[80px]"
+         style={{ y: y2, scale, background: "radial-gradient(circle, hsl(var(--accent) / 0.12) 0%, transparent 70%)" }}
+         animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
+         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" as const }}
        />
-       <motion.div 
-         className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
-         style={{ y: y1, rotate }}
-         animate={{
-           scale: [1, 1.2, 1],
-           opacity: [0.2, 0.4, 0.2],
-         }}
-         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" as const, delay: 1 }}
+       <motion.div
+         className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] rounded-full blur-[100px]"
+         style={{ y: y1, rotate, background: "radial-gradient(circle, hsl(225 40% 30% / 0.08) 0%, transparent 70%)" }}
+         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" as const, delay: 1 }}
        />
-       
+
        {/* Large parallax gradient orb */}
-       <motion.div 
-         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-accent/5 via-transparent to-transparent rounded-full pointer-events-none"
-         style={{ y: y3, scale, opacity }}
+       <motion.div
+         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none blur-[60px]"
+         style={{ y: y3, scale, opacity, background: "radial-gradient(circle, hsl(var(--accent) / 0.06) 0%, transparent 60%)" }}
        />
-       
-       {/* Floating particles with parallax */}
-       {[...Array(8)].map((_, i) => {
-         const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -50 - i * 30]);
+
+       {/* Bokeh particles - depth layer 2 (mid, large soft) */}
+       {[
+         { top: "10%", left: "8%", size: 120, color: "accent", opacity: [0.08, 0.18, 0.08], duration: 9, delay: 0 },
+         { top: "30%", left: "75%", size: 160, color: "accent", opacity: [0.05, 0.12, 0.05], duration: 12, delay: 2 },
+         { top: "60%", left: "15%", size: 100, color: "200 40% 50%", opacity: [0.04, 0.1, 0.04], duration: 10, delay: 4 },
+         { top: "80%", left: "60%", size: 140, color: "accent", opacity: [0.06, 0.15, 0.06], duration: 11, delay: 1 },
+         { top: "45%", left: "85%", size: 90, color: "260 30% 50%", opacity: [0.04, 0.08, 0.04], duration: 8, delay: 3 },
+       ].map((orb, i) => {
+         const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -40 - i * 25]);
          return (
            <motion.div
-             key={i}
-             className="absolute w-1.5 h-1.5 bg-accent/30 rounded-full"
+             key={`bokeh-${i}`}
+             className="absolute rounded-full"
              style={{
-               top: `${15 + i * 10}%`,
-               left: `${5 + i * 12}%`,
+               top: orb.top,
+               left: orb.left,
+               width: orb.size,
+               height: orb.size,
                y: parallaxY,
+               background: `radial-gradient(circle, hsl(var(--${orb.color}) / 0.3) 0%, transparent 70%)`,
+               filter: `blur(${orb.size / 3}px)`,
              }}
              animate={{
-               y: [0, -20, 0],
-               opacity: [0.2, 0.6, 0.2],
-               scale: [1, 1.2, 1],
+               opacity: orb.opacity,
+               scale: [1, 1.3, 1],
+               y: [0, -15, 0],
              }}
              transition={{
-               duration: 4 + i * 0.5,
+               duration: orb.duration,
                repeat: Infinity,
                ease: "easeInOut" as const,
-               delay: i * 0.3
+               delay: orb.delay,
              }}
            />
          );
        })}
-       
-       {/* Right side floating particles */}
-       {[...Array(5)].map((_, i) => {
-         const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -80 - i * 20]);
+
+       {/* Bokeh particles - depth layer 3 (near, small crisp) */}
+       {[
+         { top: "20%", left: "12%", size: 6, speed: -60 },
+         { top: "35%", left: "30%", size: 4, speed: -80 },
+         { top: "50%", left: "55%", size: 5, speed: -50 },
+         { top: "15%", left: "70%", size: 3, speed: -90 },
+         { top: "65%", left: "20%", size: 4, speed: -70 },
+         { top: "75%", left: "80%", size: 5, speed: -55 },
+         { top: "40%", left: "90%", size: 3, speed: -85 },
+       ].map((dot, i) => {
+         const parallaxY = useTransform(scrollYProgress, [0, 1], [0, dot.speed]);
          return (
            <motion.div
-             key={`right-${i}`}
-             className="absolute w-1 h-1 bg-accent/20 rounded-full"
+             key={`dot-${i}`}
+             className="absolute rounded-full bg-accent/25"
              style={{
-               top: `${25 + i * 15}%`,
-               right: `${8 + i * 10}%`,
+               top: dot.top,
+               left: dot.left,
+               width: dot.size,
+               height: dot.size,
                y: parallaxY,
              }}
              animate={{
-               opacity: [0.1, 0.5, 0.1],
+               opacity: [0.15, 0.5, 0.15],
+               scale: [1, 1.4, 1],
              }}
              transition={{
-               duration: 3 + i,
+               duration: 4 + i * 0.7,
                repeat: Infinity,
                ease: "easeInOut" as const,
-               delay: i * 0.4
+               delay: i * 0.5,
              }}
            />
          );

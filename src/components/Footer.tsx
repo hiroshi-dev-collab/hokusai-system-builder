@@ -34,7 +34,7 @@ const Footer = () => {
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : {}}
       transition={{ duration: 0.6 }}
-      className="py-16 border-t border-border relative overflow-hidden"
+      className="py-16 relative overflow-hidden"
     >
       {/* Subtle gradient background */}
       <motion.div 

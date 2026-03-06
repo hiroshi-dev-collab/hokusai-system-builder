@@ -86,6 +86,26 @@ const CustomCursor = () => {
 
   return (
     <>
+      {/* Cursor ambient glow */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9996]"
+        style={{ x: trailXSpring, y: trailYSpring }}
+      >
+        <motion.div
+          className="relative -translate-x-1/2 -translate-y-1/2"
+          animate={{ opacity: isVisible ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div
+            className="w-[300px] h-[300px] rounded-full"
+            style={{
+              background: "radial-gradient(circle, hsl(var(--accent) / 0.06) 0%, transparent 70%)",
+              filter: "blur(40px)",
+            }}
+          />
+        </motion.div>
+      </motion.div>
+
       {/* Main dot */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"

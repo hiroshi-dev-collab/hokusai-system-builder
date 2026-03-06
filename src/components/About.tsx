@@ -40,7 +40,7 @@ const About = () => {
   const titleText = t.about.title;
 
   return (
-    <section id="about" className="py-32 border-t border-border relative overflow-hidden" ref={ref}>
+    <section id="about" className="py-32 relative overflow-hidden section-fade" ref={ref}>
       {/* Background decorations */}
       <motion.div 
         className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial from-accent/5 to-transparent rounded-full blur-3xl"
@@ -117,7 +117,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-20 pt-12 border-t border-border"
+          className="mt-20 pt-12 border-t border-border/30"
         >
           <motion.p 
             className="section-label"
