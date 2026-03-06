@@ -1,19 +1,20 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import translations, { Translations } from "@/i18n/translations";
+import { FlagUS, FlagJP, FlagES, FlagBR } from "@/components/FlagIcons";
 
 export type Language = "en" | "jp" | "sp" | "pr";
 
 interface LanguageMeta {
   code: Language;
   label: string;
-  flag: string;
+  flag: () => JSX.Element;
 }
 
 export const languages: LanguageMeta[] = [
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "jp", label: "日本語", flag: "🇯🇵" },
-  { code: "sp", label: "Español", flag: "🇪🇸" },
-  { code: "pr", label: "Português", flag: "🇧🇷" },
+  { code: "en", label: "English", flag: FlagUS },
+  { code: "jp", label: "日本語", flag: FlagJP },
+  { code: "sp", label: "Español", flag: FlagES },
+  { code: "pr", label: "Português", flag: FlagBR },
 ];
 
 interface LanguageContextType {

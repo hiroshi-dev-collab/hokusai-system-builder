@@ -25,24 +25,29 @@ const LanguageSelector = ({ variant = "desktop" }: LanguageSelectorProps) => {
         <span className="px-4 py-2 text-xs font-medium uppercase tracking-wider text-muted-foreground/60">
           Language
         </span>
-        {languages.map((lang) => (
-          <motion.button
-            key={lang.code}
-            onClick={() => setLanguage(lang.code)}
-            className={`flex items-center gap-3 px-4 py-3 text-left text-base font-medium rounded-lg transition-colors ${
-              language === lang.code
-                ? "text-accent bg-accent/10"
-                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-            }`}
-            whileTap={{ scale: 0.97 }}
-          >
-            <span className="text-lg font-emoji">{lang.flag}</span>
-            <span>{lang.label}</span>
-          </motion.button>
-        ))}
+        {languages.map((lang) => {
+          const Flag = lang.flag;
+          return (
+            <motion.button
+              key={lang.code}
+              onClick={() => setLanguage(lang.code)}
+              className={`flex items-center gap-3 px-4 py-3 text-left text-base font-medium rounded-lg transition-colors ${
+                language === lang.code
+                  ? "text-accent bg-accent/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              }`}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Flag />
+              <span>{lang.label}</span>
+            </motion.button>
+          );
+        })}
       </div>
     );
   }
+
+  const CurrentFlag = currentMeta.flag;
 
   return (
     <div ref={ref} className="relative">
@@ -52,7 +57,7 @@ const LanguageSelector = ({ variant = "desktop" }: LanguageSelectorProps) => {
         whileTap={{ scale: 0.95 }}
         className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-secondary/50 hover:bg-secondary text-sm font-medium text-foreground transition-colors"
       >
-        <span className="text-base font-emoji">{currentMeta.flag}</span>
+        <CurrentFlag />
         <span className="uppercase text-xs tracking-wide">{currentMeta.code}</span>
       </motion.button>
 
@@ -65,24 +70,27 @@ const LanguageSelector = ({ variant = "desktop" }: LanguageSelectorProps) => {
             transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="absolute right-0 mt-2 w-40 bg-background/95 backdrop-blur-xl border border-border rounded-xl shadow-xl overflow-hidden"
           >
-            {languages.map((lang) => (
-              <motion.button
-                key={lang.code}
-                onClick={() => {
-                  setLanguage(lang.code);
-                  setOpen(false);
-                }}
-                whileHover={{ x: 4 }}
-                className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm transition-colors ${
-                  language === lang.code
-                    ? "text-accent bg-accent/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
-                }`}
-              >
-                <span className="text-base font-emoji">{lang.flag}</span>
-                <span className="font-medium">{lang.label}</span>
-              </motion.button>
-            ))}
+            {languages.map((lang) => {
+              const Flag = lang.flag;
+              return (
+                <motion.button
+                  key={lang.code}
+                  onClick={() => {
+                    setLanguage(lang.code);
+                    setOpen(false);
+                  }}
+                  whileHover={{ x: 4 }}
+                  className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm transition-colors ${
+                    language === lang.code
+                      ? "text-accent bg-accent/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                  }`}
+                >
+                  <Flag />
+                  <span className="font-medium">{lang.label}</span>
+                </motion.button>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
