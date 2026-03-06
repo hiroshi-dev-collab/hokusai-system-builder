@@ -95,7 +95,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()}
+              © 2025
             </p>
             
             {/* Back to top button */}
