@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe } from "lucide-react";
 import { useLanguage, languages } from "@/contexts/LanguageContext";
 
 interface LanguageSelectorProps {
@@ -37,7 +36,7 @@ const LanguageSelector = ({ variant = "desktop" }: LanguageSelectorProps) => {
             }`}
             whileTap={{ scale: 0.97 }}
           >
-            <span className="text-lg">{lang.flag}</span>
+            <span className="text-lg font-emoji">{lang.flag}</span>
             <span>{lang.label}</span>
           </motion.button>
         ))}
@@ -53,7 +52,7 @@ const LanguageSelector = ({ variant = "desktop" }: LanguageSelectorProps) => {
         whileTap={{ scale: 0.95 }}
         className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-secondary/50 hover:bg-secondary text-sm font-medium text-foreground transition-colors"
       >
-        <span className="text-base">{currentMeta.flag}</span>
+        <span className="text-base font-emoji">{currentMeta.flag}</span>
         <span className="uppercase text-xs tracking-wide">{currentMeta.code}</span>
       </motion.button>
 
@@ -80,7 +79,7 @@ const LanguageSelector = ({ variant = "desktop" }: LanguageSelectorProps) => {
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
                 }`}
               >
-                <span className="text-base">{lang.flag}</span>
+                <span className="text-base font-emoji">{lang.flag}</span>
                 <span className="font-medium">{lang.label}</span>
               </motion.button>
             ))}
