@@ -25,11 +25,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
    useEffect(() => {
      const handleScroll = () => {
        setIsScrolled(window.scrollY > 50);
- 
+
+       // Don't highlight any section when near the top (hero area)
+       if (window.scrollY < 300) {
+         setActiveSection("");
+         return;
+       }
+
        // Find active section
        const sections = navItems.map((item) => document.getElementById(item.id));
        const scrollPosition = window.scrollY + 100;
- 
+
        for (let i = sections.length - 1; i >= 0; i--) {
          const section = sections[i];
          if (section && section.offsetTop <= scrollPosition) {
