@@ -48,7 +48,7 @@ const Hero = () => {
   };
 
    return (
-     <section ref={ref} className="min-h-screen flex flex-col justify-center section-container py-24 relative overflow-hidden">
+     <section ref={ref} className="min-h-screen flex flex-col justify-center section-container py-24 relative overflow-x-clip overflow-y-visible">
        {/* Parallax background elements */}
        <motion.div 
          className="absolute top-1/4 -left-32 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
@@ -129,12 +129,12 @@ const Hero = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
+            className="text-accent text-[11px] tracking-[0.2em] uppercase mb-6 font-medium"
           >
             <motion.span
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="inline-block w-2 h-2 bg-accent rounded-full mr-3"
+              className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-3"
             />
             {t.hero.subtitle}
           </motion.p>
@@ -143,7 +143,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-5xl md:text-6xl lg:text-7xl font-medium text-foreground leading-[1.1] mb-8"
+            className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-foreground leading-[1.05] mb-8 tracking-[-0.02em]"
           >
             <motion.span 
               className="inline-block"
@@ -153,7 +153,7 @@ const Hero = () => {
               }}
               transition={{ duration: 0.3 }}
             >
-              Hiroshi
+              Hiroshi Funaoka
             </motion.span>
           </motion.h1>
           
@@ -161,7 +161,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 max-w-xl"
+            className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 max-w-xl font-light"
           >
             {t.hero.description}
           </motion.p>
@@ -205,33 +205,33 @@ const Hero = () => {
            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
            animate={{ opacity: 1, scale: 1, rotate: 0 }}
            transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
-           className="order-1 lg:order-2 flex justify-center lg:justify-end"
+           className="order-1 lg:order-2 flex justify-center lg:justify-center"
            style={{ y: y3 }}
          >
-          <motion.div 
-            className="relative"
+          <motion.div
+            className="relative m-16"
             animate={floatingAnimation}
           >
             {/* Animated glow rings */}
-            <motion.div 
+            <motion.div
               className="absolute -inset-4 bg-gradient-to-br from-accent/30 via-accent/10 to-transparent rounded-full blur-2xl"
               animate={glowPulse}
             />
-            <motion.div 
+            <motion.div
               className="absolute -inset-8 border border-accent/20 rounded-full"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             />
-            <motion.div 
+            <motion.div
               className="absolute -inset-12 border border-accent/10 rounded-full"
               animate={{ rotate: -360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             />
-            
-            <motion.img 
-              src={hiroshiPhoto} 
-              alt="Hiroshi - Software Developer"
-              className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full border-2 border-border shadow-2xl"
+
+            <motion.img
+              src={hiroshiPhoto}
+              alt="Hiroshi Funaoka - Software Developer"
+              className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full border border-accent/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)]"
               whileHover={{ scale: 1.05, borderColor: "hsl(var(--accent))" }}
               transition={{ duration: 0.4 }}
             />

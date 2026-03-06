@@ -52,10 +52,10 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <motion.p 
-              className="text-foreground font-medium text-lg"
+              className="text-foreground font-serif font-medium text-lg"
               whileHover={{ scale: 1.02 }}
             >
-              Hiroshi
+              Hiroshi Funaoka
             </motion.p>
             <p className="text-sm text-muted-foreground">{t.footer.role}</p>
           </motion.div>

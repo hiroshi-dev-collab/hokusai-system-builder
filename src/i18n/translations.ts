@@ -40,7 +40,7 @@ const translations = {
     // Footer
     footer: {
       role: "Software Developer · Japan",
-      decorative: "HIROSHI · SOFTWARE · DEVELOPER",
+      decorative: "HIROSHI FUNAOKA · SOFTWARE · DEVELOPER",
     },
   },
   jp: {
@@ -112,7 +112,7 @@ const translations = {
     },
     footer: {
       role: "Desarrollador de Software · Japón",
-      decorative: "HIROSHI · SOFTWARE · DESARROLLADOR",
+      decorative: "HIROSHI FUNAOKA · SOFTWARE · DESARROLLADOR",
     },
   },
   pr: {
@@ -148,7 +148,7 @@ const translations = {
     },
     footer: {
       role: "Desenvolvedor de Software · Japão",
-      decorative: "HIROSHI · SOFTWARE · DESENVOLVEDOR",
+      decorative: "HIROSHI FUNAOKA · SOFTWARE · DESENVOLVEDOR",
     },
   },
 };

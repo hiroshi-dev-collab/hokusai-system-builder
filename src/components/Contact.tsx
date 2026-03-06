@@ -81,7 +81,7 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <motion.div variants={itemVariants}>
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-6"
+              className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-foreground mb-6"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -110,7 +110,7 @@ const Contact = () => {
               <motion.span className="inline-block">{t.contact.heading3}</motion.span>
             </motion.h2>
             <motion.p 
-              className="text-muted-foreground leading-relaxed text-lg"
+              className="text-muted-foreground leading-relaxed text-lg font-light"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -149,7 +149,7 @@ const Contact = () => {
             className="space-y-4"
           >
             <motion.a 
-              href="mailto:hello@hiroshi.dev" 
+              href="mailto:hiroshi.seniordev@outlook.com" 
               className="group flex items-center justify-between p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm hover:bg-accent/5 hover:border-accent/30 transition-all duration-500 overflow-hidden relative"
               whileHover={{ scale: 1.02, x: 8 }}
               whileTap={{ scale: 0.98 }}
@@ -169,7 +169,7 @@ const Contact = () => {
                 </motion.div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t.contact.email}</p>
-                  <p className="text-foreground font-medium">hello@hiroshi.dev</p>
+                  <p className="text-foreground font-medium">hiroshi.seniordev@outlook.com</p>
                 </div>
               </div>
               <motion.div

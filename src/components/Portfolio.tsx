@@ -120,7 +120,7 @@ const Portfolio = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="text-3xl md:text-5xl font-medium text-foreground mb-6 max-w-2xl"
+          className="text-3xl md:text-5xl font-serif font-medium text-foreground mb-6 max-w-2xl"
         >
           <motion.span className="inline-block">{t.portfolio.heading1}</motion.span>{" "}
           <motion.span 
@@ -142,7 +142,7 @@ const Portfolio = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-muted-foreground text-lg mb-16 max-w-xl"
+          className="text-muted-foreground text-lg mb-16 max-w-xl font-light"
         >
           {t.portfolio.subtitle}
         </motion.p>

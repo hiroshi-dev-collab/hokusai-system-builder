@@ -49,7 +49,7 @@ const About = () => {
         transition={{ duration: 1.5 }}
       />
       
-      <div className="section-container relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -72,7 +72,7 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-16 mt-8">
             <motion.div variants={itemVariants}>
               <motion.p 
-                className="text-2xl md:text-3xl font-medium text-foreground leading-relaxed"
+                className="text-2xl md:text-3xl font-serif font-medium text-foreground leading-relaxed"
                 initial={{ backgroundPosition: "200%" }}
                 whileInView={{ backgroundPosition: "0%" }}
                 transition={{ duration: 1.5 }}
@@ -89,7 +89,7 @@ const About = () => {
             
             <motion.div 
               variants={itemVariants}
-              className="space-y-6 text-muted-foreground leading-relaxed"
+              className="space-y-6 text-muted-foreground leading-relaxed font-light"
             >
               <motion.p
                 initial={{ opacity: 0, x: 30 }}

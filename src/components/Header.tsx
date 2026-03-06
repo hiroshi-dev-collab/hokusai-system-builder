@@ -78,12 +78,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
            {/* Logo */}
            <motion.button
              onClick={scrollToTop}
-             className="text-xl md:text-2xl font-medium text-foreground hover:text-accent transition-colors"
+             className="text-xl md:text-2xl font-serif font-medium text-foreground hover:text-accent transition-colors"
              whileHover={{ scale: 1.05 }}
              whileTap={{ scale: 0.95 }}
            >
              <span className="bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-               Hiroshi
+               Hiroshi Funaoka
              </span>
            </motion.button>
  
