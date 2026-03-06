@@ -55,7 +55,7 @@ const Footer = () => {
               className="text-foreground font-serif font-medium text-lg"
               whileHover={{ scale: 1.02 }}
             >
-              Hiroshi Funaoka
+              HokusaiLabs
             </motion.p>
             <p className="text-sm text-muted-foreground">{t.footer.role}</p>
           </motion.div>

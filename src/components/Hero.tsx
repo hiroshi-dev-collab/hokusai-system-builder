@@ -139,25 +139,34 @@ const Hero = () => {
             {t.hero.subtitle}
           </motion.p>
           
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-foreground leading-[1.05] mb-8 tracking-[-0.02em]"
+            className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-foreground leading-[1.05] mb-4 tracking-[-0.02em]"
           >
-            <motion.span 
+            <motion.span
               className="inline-block"
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 textShadow: "0 0 40px hsl(var(--accent) / 0.3)"
               }}
               transition={{ duration: 0.3 }}
             >
-              Hiroshi Funaoka
+              HokusaiLabs
             </motion.span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="text-sm text-accent/80 tracking-wide mb-8"
+          >
+            {t.hero.founder}
+          </motion.p>
+
+          <motion.p
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -230,7 +239,7 @@ const Hero = () => {
 
             <motion.img
               src={hiroshiPhoto}
-              alt="Hiroshi Funaoka - Software Developer"
+              alt="Hiroshi Funaoka - Founder of HokusaiLabs"
               className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full border border-accent/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)]"
               whileHover={{ scale: 1.05, borderColor: "hsl(var(--accent))" }}
               transition={{ duration: 0.4 }}

@@ -83,7 +83,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
              whileTap={{ scale: 0.95 }}
            >
              <span className="bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-               Hiroshi Funaoka
+               HokusaiLabs
              </span>
            </motion.button>
  

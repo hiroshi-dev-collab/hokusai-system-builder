@@ -1,4 +1,4 @@
-import { Mail, ArrowUpRight, Github, Twitter } from "lucide-react";
+import { Mail, ArrowUpRight, Github, Twitter, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
@@ -180,8 +180,42 @@ const Contact = () => {
               </motion.div>
             </motion.a>
 
+            <motion.a
+              href="https://wa.me/18578339756"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm hover:bg-accent/5 hover:border-accent/30 transition-all duration-500 overflow-hidden relative"
+              whileHover={{ scale: 1.02, x: 8 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+
+              <div className="flex items-center gap-4 relative z-10">
+                <motion.div
+                  className="p-3 rounded-full bg-secondary group-hover:bg-accent/20 transition-colors duration-300"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <MessageCircle className="h-5 w-5 text-foreground" />
+                </motion.div>
+                <div>
+                  <p className="text-sm text-muted-foreground">WhatsApp</p>
+                  <p className="text-foreground font-medium">+1 (857) 833-9756</p>
+                </div>
+              </div>
+              <motion.div
+                initial={{ x: 0, y: 0 }}
+                whileHover={{ x: 5, y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors duration-300" />
+              </motion.div>
+            </motion.a>
+
             {/* Animated divider */}
-            <motion.div 
+            <motion.div
               className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-6"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
