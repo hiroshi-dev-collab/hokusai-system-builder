@@ -1,4 +1,4 @@
-import { Mail, ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, ArrowUpRight, Github, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
@@ -30,8 +30,7 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { icon: Github, label: "GitHub", href: "#" },
-    { icon: Linkedin, label: "LinkedIn", href: "#" },
+    { icon: Github, label: "GitHub", href: "https://github.com/hiroshi-dev-collab" },
     { icon: Twitter, label: "Twitter", href: "#" },
   ];
 
